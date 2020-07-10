@@ -2,12 +2,10 @@ class TransaksiMember{
     var namaPelanggan = Pelanggan.namaPelanggan
 
     companion object {
-        var dataBarang: MutableMap<Pair<Any, Any>, Any> = mutableMapOf()
+        var dataJumlahBarang = mutableMapOf<Any, Any>()
+        var dataHargaBarang = mutableMapOf<Any, Any>()
     }
 
-    fun inputTest() {
-        dataBarang.put(key = Pair("a", "a"), value = "c")
-    }
     fun showTransaksi() {
         println("""
         -----------------------------
@@ -21,14 +19,23 @@ class TransaksiMember{
             val hargaBarangInput = readLine()!!.toInt()
             print("Input jumlah barang: ")
             val jumlahBarangInput = readLine()!!.toInt()
-            dataBarang.put(key = Pair("$namaBarangInput", hargaBarangInput ), value = jumlahBarangInput)
+            val totalHargaBarang = hargaBarangInput * jumlahBarangInput
+
+            dataHargaBarang.set(namaBarangInput, totalHargaBarang)
+            dataJumlahBarang.set(namaBarangInput, jumlahBarangInput)
+
             println("-----------------------------")
             print("Input barang lagi? (Y/N)")
             val inputBarangBaru = readLine()!!
-        } while (inputBarangBaru != "N")
 
-        for (item in dataBarang) {
-            print(item.key)
+        } while (inputBarangBaru != "N" || inputBarangBaru == "y")
+
+        for (jumlah in dataJumlahBarang) {
+            for (harga in dataHargaBarang) {
+                print("${jumlah.key} ")
+                print("${jumlah.value} ")
+                println(harga.value)
+            }
         }
     }
 }
