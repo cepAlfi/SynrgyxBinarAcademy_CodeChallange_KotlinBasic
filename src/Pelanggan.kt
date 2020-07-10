@@ -1,8 +1,7 @@
-class Pelanggan {
+open class Pelanggan{
     companion object {
         var namaPelanggan: String? = null
     }
-
     fun checkoutPelanggan() {
         println("""
         -----------------------------
@@ -29,5 +28,6 @@ class Pelanggan {
         print("Input nama member: ")
         var namaMemberInput = readLine()!!
         namaPelanggan = namaMemberInput
+        TransaksiMember().showTransaksi()
     }
 }
