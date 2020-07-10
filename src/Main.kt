@@ -1,4 +1,5 @@
-class Main {
+class Main: Login() {
+    val loginObj = Login()
     fun showMainMenu() {
         println("""
         -----------------------------
@@ -11,7 +12,7 @@ class Main {
         val menuInput = readLine()?.toInt()
 
         if (menuInput == 1) {
-            Login().showLoginMenu()
+            loginObj.showLoginMenu()
         } else {
             return
         }

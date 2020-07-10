@@ -1,8 +1,5 @@
-open class Pelanggan{
-    companion object {
-        var namaPelanggan: String? = null
-    }
-    fun checkoutPelanggan() {
+open class Pelanggan(): PelangganAbstract() {
+    public override fun checkoutPelanggan() {
         println("""
         -----------------------------
         Checkout Pelanggan
@@ -27,7 +24,6 @@ open class Pelanggan{
     """.trimIndent())
         print("Input nama member: ")
         var namaMemberInput = readLine()!!
-        namaPelanggan = namaMemberInput
-        TransaksiMember().showTransaksi()
+        TransaksiMember(namaMemberInput).showTransaksi()
     }
 }

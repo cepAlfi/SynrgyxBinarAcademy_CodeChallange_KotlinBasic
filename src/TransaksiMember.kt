@@ -1,17 +1,24 @@
-class TransaksiMember{
-    var namaPelanggan = Pelanggan.namaPelanggan
-
+class TransaksiMember(var namaPelanggan: Any) {
     companion object {
-        var dataJumlahBarang = mutableMapOf<Any, Any>()
-        var dataHargaBarang = mutableMapOf<Any, Any>()
+        var dataNamaBarang = ArrayList<Any>()
+        var dataJumlahBarang = ArrayList<Any>()
+        var dataHargaBarang = ArrayList<Any>()
+    }
+
+    fun Any.addRp(): Unit = print("Rp. $this")
+
+    fun showTotalHarga(harga: Int, jumlah: Int): Int {
+        return harga * jumlah
     }
 
     fun showTransaksi() {
-        println("""
+        println(
+            """
         -----------------------------
         Checkout Pelanggan Member $namaPelanggan
         -----------------------------
-    """.trimIndent())
+    """.trimIndent()
+        )
         do {
             print("Input nama barang: ")
             val namaBarangInput = readLine()!!
@@ -19,23 +26,30 @@ class TransaksiMember{
             val hargaBarangInput = readLine()!!.toInt()
             print("Input jumlah barang: ")
             val jumlahBarangInput = readLine()!!.toInt()
-            val totalHargaBarang = hargaBarangInput * jumlahBarangInput
+            val totalHargaBarang = showTotalHarga(hargaBarangInput, jumlahBarangInput)
 
-            dataHargaBarang.set(namaBarangInput, totalHargaBarang)
-            dataJumlahBarang.set(namaBarangInput, jumlahBarangInput)
+            dataNamaBarang.add(namaBarangInput)
+            dataHargaBarang.add(totalHargaBarang)
+            dataJumlahBarang.add(jumlahBarangInput)
 
             println("-----------------------------")
             print("Input barang lagi? (Y/N)")
             val inputBarangBaru = readLine()!!
+            println("-----------------------------")
 
         } while (inputBarangBaru != "N" || inputBarangBaru == "y")
 
-        for (jumlah in dataJumlahBarang) {
-            for (harga in dataHargaBarang) {
-                print("${jumlah.key} ")
-                print("${jumlah.value} ")
-                println(harga.value)
-            }
+        var i = 0
+
+        while (i < dataHargaBarang.size) {
+            println("${dataNamaBarang[i]} x ${dataJumlahBarang[i]} = Rp. ${dataHargaBarang[i]}")
+            i++
         }
+
+        println("-----------------------------")
+        var totalHarga = (dataHargaBarang).sumBy { it as Int }
+        print("Total tagihan: ")
+        totalHarga.addRp()
+
     }
 }

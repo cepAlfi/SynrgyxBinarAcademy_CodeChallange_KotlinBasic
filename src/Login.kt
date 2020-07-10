@@ -1,5 +1,8 @@
-class Login{
-    val dataUsers = mapOf("Ucup" to "Ucup123456")
+open class Login{
+    companion object {
+        private const val USERNAME = "MasAgus"
+        private const val PASSWORD = "apajaboleh"
+    }
 
     fun showLoginMenu() {
         println("""
@@ -13,14 +16,13 @@ class Login{
         print("Password: ")
         var passwordInput = readLine()
 
-        dataUsers.forEach { uname, password -> if (usernameInput == uname && passwordInput == password) {
+        if (usernameInput == USERNAME && passwordInput == PASSWORD) {
             println("""
                 -----------------------------
-                Selamat Datang $uname
+                Selamat Datang $USERNAME
                 -----------------------------
             """.trimIndent())
             MenuDua().showMenuDua()
-        }
         }
     }
 }
