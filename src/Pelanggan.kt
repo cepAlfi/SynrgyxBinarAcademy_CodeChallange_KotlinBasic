@@ -13,6 +13,8 @@ open class Pelanggan(): PelangganAbstract() {
 
         if (jenisPelangganInput == "1") {
             inputMemberData()
+        } else {
+            inputMemberData(1)
         }
     }
 
@@ -26,4 +28,11 @@ open class Pelanggan(): PelangganAbstract() {
         var namaMemberInput = readLine()!!
         TransaksiMember(namaMemberInput).showTransaksi()
     }
+
+    fun inputMemberData(nonMember: Int){
+        var namaMemberInput = ""
+        TransaksiMember(namaMemberInput).showTransaksi()
+    }
+
+
 }

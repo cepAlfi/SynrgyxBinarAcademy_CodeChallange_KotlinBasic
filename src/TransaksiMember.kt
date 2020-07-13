@@ -12,13 +12,20 @@ class TransaksiMember(var namaPelanggan: Any) {
     }
 
     fun showTransaksi() {
-        println(
-            """
-        -----------------------------
-        Checkout Pelanggan Member $namaPelanggan
-        -----------------------------
-    """.trimIndent()
-        )
+        if (namaPelanggan !== "") {
+            println("""
+            -----------------------------
+            Checkout Pelanggan Member $namaPelanggan
+            -----------------------------
+            """.trimIndent())
+        } else {
+            println("""
+            -----------------------------
+            Checkout Pelanggan Non Member
+            -----------------------------
+            """.trimIndent())
+        }
+
         do {
             print("Input nama barang: ")
             val namaBarangInput = readLine()!!
